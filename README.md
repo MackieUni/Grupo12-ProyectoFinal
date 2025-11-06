@@ -77,7 +77,7 @@ Integrante	Rol	Responsabilidades clave
  Usabilidad/Presentación (35%): interfaz clara, resultados interpretables, visualizaciones.
 
  Enlaces
-Repositorio:
+Repositorio: https://github.com/MackieUni/Grupo12-ProyectoFinal
 
 Aplicación desplegada: [agregar URL cuando esté activa]
   
