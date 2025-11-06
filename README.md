@@ -33,12 +33,12 @@ Evidenciar que la propuesta del grupo ha sido integrada en una **aplicación fun
 ```bash
 git clone https://github.com/MackieUni/Grupo12-ProyectoFinal.git
 cd Grupo12-ProyectoFinal
-2 Crear entorno e instalar dependencias
-bash
-Copy code
+2 Crear entorno e instalar dependencias ------
+
 python -m venv .venv
 source .venv/bin/activate     # En Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r requirements.txt  -------
+
 3 Ejecutar la aplicación
 
 streamlit run app/streamlit_app.py
