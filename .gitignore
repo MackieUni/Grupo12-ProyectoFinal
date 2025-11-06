@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Data & models
+data/
+*.csv
+*.pt
+*.h5
+*.pkl
+
+# Configuration
+.env
+config.yaml
+
+# System
+.DS_Store
+.ipynb_checkpoints/ 
