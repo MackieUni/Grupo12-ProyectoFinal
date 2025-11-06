@@ -81,5 +81,5 @@ Repositorio: https://github.com/MackieUni/Grupo12-ProyectoFinal
 
 Aplicación desplegada: [agregar URL cuando esté activa]
   
-Datos de origen / referencias: [enlaces a datasets públicos] (opcional)
+Datos de origen / referencias: [enlaces a datasets públicos] 
 
