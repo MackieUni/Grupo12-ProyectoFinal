@@ -1,0 +1,3 @@
+[submodule "app/maia-back-proyecto"]
+	path = app/maia-back-proyecto
+	url = https://github.com/marioguaqueta/maia-back-proyecto.git
