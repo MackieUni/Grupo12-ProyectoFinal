@@ -1,0 +1,34 @@
+arquitectura_alto_nivel.png
+Título: Arquitectura Alto Nivel de la Solución
+Descripción: 
+La solución está compuesta por dos bloques funcionales principales. El backend, desplegado en EC2, encargado de cargar los modelos y realizar las predicciones con base en ellos, y que expone un servicio a través de un API Rest, y el frontend, desplegado en Streamlit con lenguaje base de Python, que dispone la interfaz gráfica a los usuarios finales a través de un navegador web.
+El backend descarga los modelos desde el repositorio del equipo en Google Drive, y lleva la trazabilidad de todas las predicciones en una base de datos SQLite.
+
+******************
+arquitectura_despliegue.png
+Título: Diagrama de despliegue de la solución
+Descripción:
+Backend desplegado en AWS EC2, en una IaaS, corriendo en un contenedor de Docker, y recibe las peticiones por el puerto 8000. Tiene comunicación a internet para acceder al repositorio de modelos.
+Frontend desplegado en Streamlit, que apunta al archivo streamlit_app.py del mismo proyecto, y este PaaS se encarga de generar el deploy por demanda.
+
+******************
+flujo_datos.png
+Título: Diagrama de flujo
+Descripción:
+Las transacciones principales de la aplicación son:
+Solicitud de análisis de imágenes, que se dispara desde el front una vez el usuario ha subido el archivo con las imágenes, seleccionado el modelo y ajustado los parámetros de configuración de la tarea. Toda esta transacción es coordinada y resuleta en el back.
+Solicitud de recuperación de resultados, que se pide a través del API, y se consultan en la base de datos que lleva la trazabilidad de estos.
+
+******************
+interaccion_componentes.png
+Título: Diagrama de componentes
+Descripción:
+Los componentes están distribuidos en: 3 en backend (API, Servicios, Persistencia), y el frontend un solo componente autocontenido.
+
+******************
+flujo_despliegue.png
+Título: Flujo de Despliegue
+Descripción:
+Se ejecutan por separado el backend y el frontend, a pesar que están en el mismo repositorio.
+En el backend se ejecuta por demanda, realizando pull desde Github y construcción del contenedor del Docker. (Paso a mejorar en la siguiente entrega)
+En el frontend se ejecuta por demanda desde la interfaz de Streamlit.
