@@ -1,6 +1,7 @@
-GUACAMAYA: Automated Detection and Counting System for African Wildlife
-Deep Learning Architecture Optimization for Automated Wildlife Detection and Counting in High-Resolution Aerial Surveys
 <div align="center">
+🦅 GUACAMAYA
+Automated Detection and Counting System for African Wildlife
+Deep Learning Architecture Optimization for Automated Wildlife Detection and Counting in High-Resolution Aerial Surveys
 Show Image
 Show Image
 Show Image
@@ -10,209 +11,381 @@ Master's Thesis Project
 Master in Artificial Intelligence (MAIA)
 Universidad de los Andes, Bogotá, Colombia
 2025
+🚀 Live Demo | 📂 Repository | 📄 Paper
 </div>
 
-Authors
-Inmaculada Concepción Rondón<sup>a,*</sup> · Jorge Mario Guaquetá<sup>a</sup> · Daniel Santiago Trujillo<sup>a</sup> · Daniela Alexandra Ortiz Santacruz<sup>a</sup>
-<sup>a</sup>Centro SINFONÍA, Universidad de los Andes, Carrera 1 No. 18A-12, Bogotá 111711, Colombia
+👥 Authors
+<table>
+<tr>
+<td align="center"><b>Inmaculada Concepción Rondón</b><sup>*</sup><br><sub>Project Lead & ML Engineer</sub></td>
+<td align="center"><b>Jorge Mario Guaquetá</b><br><sub>Data Scientist & ML Engineer</sub></td>
+<td align="center"><b>Daniel Santiago Trujillo</b><br><sub>Backend Developer & DevOps</sub></td>
+<td align="center"><b>Daniela Alexandra Ortiz Santacruz</b><br><sub>Frontend Developer & UX Designer</sub></td>
+</tr>
+</table>
 <sup>*</sup>Corresponding author: mackierondon1@gmail.com
+Affiliation: Centro SINFONÍA, Universidad de los Andes, Carrera 1 No. 18A-12, Bogotá 111711, Colombia
 
-Table of Contents
-
-Abstract
-1. Introduction
-2. Methodology
-3. Results
-4. System Architecture
-5. Usage Instructions
-6. Technical Specifications
-7. Deployment Guide
-8. Performance Benchmarks
-9. Limitations and Future Work
-10. References
-
+📋 Table of Contents
 
 Abstract
-Aerial wildlife surveys are essential for population monitoring in extensive ecosystems, but manual counting methods present critical limitations including visual fatigue, inter-observer variability (up to 40%), and prohibitive processing costs (40-50 person-hours per 1,000 images). This work presents GUACAMAYA, an automated wildlife detection and counting system for African fauna that prioritizes data quality over architectural complexity.
-Key Contributions:
+Key Results
+System Architecture
+Methodology
+Performance Analysis
+Usage Guide
+Deployment
+Technical Specifications
+Citation
 
-Development of robust data engineering pipeline correcting critical indexation errors (1-6 → 0-5)
-Implementation of YOLO11s achieving 61.4% mAP@0.5 and 59.2% F1-Score
-Demonstration of 80.4% baseline performance (HerdNet) with 3× computational efficiency
-Full-stack deployment on AWS EC2 + Streamlit Cloud infrastructure
+
+Abstract
+Aerial wildlife surveys are essential for population monitoring in extensive ecosystems, but manual counting methods present critical limitations including visual fatigue, inter-observer variability (up to 40%), and prohibitive processing costs (40-50 person-hours per 1,000 images).
+This work presents GUACAMAYA, an automated wildlife detection and counting system for African fauna that prioritizes data quality over architectural complexity.
+🎯 Key Contributions
+<table>
+<tr>
+<td width="25%" align="center">
+<img src="https://img.shields.io/badge/mAP@0.5-61.4%25-success?style=flat-square" />
+<br><b>Detection Accuracy</b>
+</td>
+<td width="25%" align="center">
+<img src="https://img.shields.io/badge/F1--Score-59.2%25-blue?style=flat-square" />
+<br><b>Overall Performance</b>
+</td>
+<td width="25%" align="center">
+<img src="https://img.shields.io/badge/Baseline-80.4%25-orange?style=flat-square" />
+<br><b>vs. HerdNet</b>
+</td>
+<td width="25%" align="center">
+<img src="https://img.shields.io/badge/Speed-3×_Faster-red?style=flat-square" />
+<br><b>Computational Efficiency</b>
+</td>
+</tr>
+</table>
+
+✅ Robust data engineering pipeline correcting critical indexation errors (1-6 → 0-5)
+✅ YOLO11s implementation achieving 61.4% mAP@0.5 and 59.2% F1-Score
+✅ 80.4% baseline performance with 3× computational efficiency
+✅ Full-stack deployment on AWS EC2 + Streamlit Cloud
 
 Keywords: wildlife detection, YOLO, deep learning, data engineering, conservation, computer vision
 
-1. Introduction
-1.1 Problem Statement
-Traditional aerial wildlife surveys rely on manual counting by human observers from aircraft, introducing systematic errors:
-LimitationImpactVisual fatigue>30% accuracy reduction after 2 hoursTurbulence effectsInconsistent observation conditionsInter-observer variabilityUp to 40% discrepancy between observersProcessing time40-50 person-hours per 1,000 imagesScalabilityCannot process systematic survey volumes
-1.2 Research Objectives
+🏆 Key Results
+Performance Comparison
+mermaidgraph LR
+    A[HerdNet Baseline] -->|73.6% F1-Score| B[Reference Performance]
+    C[GUACAMAYA YOLO11s] -->|59.2% F1-Score| D[80.4% of Baseline]
+    C -->|3× Faster| E[Superior Efficiency]
+    C -->|61.4% mAP@0.5| F[High Precision]
+    
+    style A fill:#ff6b6b
+    style C fill:#4ecdc4
+    style D fill:#95e1d3
+    style E fill:#f38181
+    style F fill:#aa96da
+Critical Discovery
+<div align="center">
+```mermaid
+graph TD
+    A[Dataset with Incorrect Labels] -->|Indexation 1-6| B[Model Training]
+    B --> C{mAP@0.5}
+    C -->|Initial Result| D[0.0% - Complete Failure]
+E[Data Engineering Pipeline] -->|Correction 1-6 → 0-5| F[Fixed Dataset]
+F --> G[Model Retraining]
+G --> H{mAP@0.5}
+H -->|Final Result| I[61.4% - Functional System]
 
-Primary: Develop automated wildlife detection system for ultra-high resolution (20MP) aerial imagery
-Secondary: Achieve ≥80% of baseline HerdNet performance with improved computational efficiency
-Tertiary: Demonstrate practical deployment viability for conservation applications
+D -.->|Data Quality > Architecture| I
 
-1.3 Project Evolution
-PhaseInitial PlanImplemented SolutionArchitectureHerdNet vs YOLO comparisonYOLO11s optimizationStrategyMulti-architecture evaluationData quality prioritizationChallengePatch management for 20MPCritical annotation correction (400 files)Result—0% → 61.4% mAP transformation
-Critical Discovery: Data indexation error (1-6 instead of 0-5) caused complete model failure. Correction pipeline became primary contribution.
+style D fill:#ff4757,color:#fff
+style I fill:#26de81,color:#fff
+style E fill:#fed330
 
-2. Methodology
-2.1 Dataset Characteristics
+**Impact:** +61.4 percentage points improvement through data correction alone
+
+</div>
+
+### Per-Species Performance
+
+<div align="center">
+
+| 🦁 Species | n | mAP@0.5 | Precision | Recall | F1-Score | Difficulty |
+|:---|---:|:---:|:---:|:---:|:---:|:---:|
+| 🐃 **Buffalo** | 369 | <span style="color:green">**83.1%**</span> | 85.7% | 64.8% | 73.8% | ⭐ Easy |
+| 🐘 **Elephant** | 102 | <span style="color:green">**80.3%**</span> | 62.2% | 78.4% | 69.4% | ⭐ Easy |
+| 🦌 **Kudu** | 161 | <span style="color:blue">**76.6%**</span> | 58.5% | 88.2% | 70.3% | ⭐⭐ Moderate |
+| 🦌 **Waterbuck** | 39 | <span style="color:orange">40.2%</span> | 52.8% | 38.5% | 44.5% | ⭐⭐⭐ Difficult |
+| 🐗 **Warthog** | 43 | <span style="color:red">28.9%</span> | 30.4% | 34.9% | 32.5% | ⭐⭐⭐⭐ Very Difficult |
+
+</div>
+
+---
+
+## 🏗️ System Architecture
+
+### Infrastructure Overview
+```mermaid
+graph TB
+    subgraph User["👤 User Interface"]
+        UI[Web Browser]
+    end
+    
+    subgraph Frontend["🎨 Frontend - Streamlit Cloud (PaaS)"]
+        ST[Streamlit App<br/>streamlit_app.py]
+        VIZ[Plotly Visualizations]
+    end
+    
+    subgraph Backend["⚙️ Backend - AWS EC2 + Docker"]
+        API[Flask REST API<br/>Port 8000]
+        MODEL[Model Inference<br/>YOLO11s / HerdNet]
+        DB[(SQLite Database<br/>Predictions Tracking)]
+    end
+    
+    subgraph Storage["💾 Model Storage"]
+        GD[Google Drive<br/>Team Storage]
+    end
+    
+    UI -->|HTTPS| ST
+    ST -->|HTTP POST| API
+    API --> MODEL
+    MODEL --> DB
+    API -->|JSON + Images| ST
+    ST -->|Render Results| UI
+    GD -.->|Download Models| MODEL
+    
+    style UI fill:#e3f2fd
+    style ST fill:#fff3e0
+    style API fill:#f3e5f5
+    style MODEL fill:#e8f5e9
+    style DB fill:#fce4ec
+    style GD fill:#fff9c4
+Processing Workflow
+mermaidsequenceDiagram
+    participant U as 👤 User
+    participant F as 🎨 Frontend
+    participant A as ⚙️ API Backend
+    participant M as 🤖 YOLO11s
+    participant D as 💾 Database
+    
+    U->>F: Upload Image(s)
+    F->>F: Validate Format
+    F->>A: HTTP POST /api/analyze
+    A->>M: Load Model
+    M->>M: Inference (2-3s)
+    M->>A: Detections + Bounding Boxes
+    A->>D: Log Results (Task ID)
+    D->>A: Confirmation
+    A->>F: JSON + Annotated Images
+    F->>F: Generate Visualizations
+    F->>U: Display Results + Download
+    
+    Note over M: GPU: Tesla T4<br/>Resolution: 2048px<br/>Confidence: 0.25
+Technology Stack
+<div align="center">
+LayerTechnologyPurpose🎨 FrontendStreamlit Cloud (PaaS)Web interface, visualization⚙️ BackendAWS EC2 + DockerAPI server, model inference🤖 ML FrameworkPyTorch + Ultralytics YOLODeep learning engine💾 DatabaseSQLitePredictions tracking📊 VisualizationPlotlyInteractive charts🔐 APIFlask RESTBackend communication
+</div>
+
+🔬 Methodology
+Dataset Characteristics
+mermaidpie title Species Distribution in Test Set (n=714)
+    "Buffalo" : 369
+    "Kudu" : 161
+    "Elephant" : 102
+    "Warthog" : 43
+    "Waterbuck" : 39
+<div align="center">
 HerdNet African Wildlife Dataset (Delplanque et al., 2022)
-AttributeSpecificationTotal images~2,000 aerial photographsResolution5000×4000 pixels (20 megapixels)FormatJPEG, 24-bit RGBGSD3-5 cm/pixelCapture angleOblique (30-45° from nadir)Flight altitude100-150 meters AGLLocationEnnedi Reserve, ChadTotal annotations6,962 instances
-Species Distribution (Test Set, n=714):
-SpeciesCodeInstances% TotalDifficultyBuffalo036953.0%EasyKudu216123.1%ModerateElephant110214.6%EasyWarthog4436.2%Very difficultWaterbuck3395.6%Difficult
-2.2 Data Engineering Pipeline
-Critical Error Correction:
+AttributeSpecification📸 Total Images~2,000 aerial photographs📐 Resolution5000×4000 pixels (20 MP)🎨 FormatJPEG, 24-bit RGB📏 GSD3-5 cm/pixel✈️ Capture AngleOblique (30-45° from nadir)🛩️ Flight Altitude100-150 meters AGL🌍 LocationEnnedi Reserve, Chad🏷️ Total Annotations6,962 instances across 6 species
+</div>
+Data Engineering Pipeline
+mermaidflowchart LR
+    A[Raw VOC Format<br/>Coordinates: x1,y1,x2,y2<br/>Classes: 1-6] --> B{Error Detection}
+    B -->|Indexation Error| C[Correction Pipeline]
+    C --> D[Reindex Classes<br/>1-6 → 0-5]
+    D --> E[Convert to YOLO<br/>xc,yc,w,h normalized]
+    E --> F[Validate Format]
+    F --> G[Training Dataset<br/>Ready for YOLO11s]
+    
+    style A fill:#ff6b6b,color:#fff
+    style C fill:#fed330
+    style G fill:#26de81,color:#fff
+Critical Error Correction
 pythondef correct_annotation_file(filepath):
-    """Corrects class indexation from 1-6 to 0-5 (YOLO standard)"""
+    """
+    Corrects class indexation from 1-6 to 0-5 (YOLO standard)
+    
+    Impact: 0% → 61.4% mAP@0.5
+    Files corrected: 400 annotation files
+    """
     corrected_lines = []
     with open(filepath, 'r') as f:
         for line in f:
             parts = line.strip().split()
             if parts:
-                class_id = int(parts[0]) - 1  # Decrement by 1
+                class_id = int(parts[0]) - 1  # Critical correction
                 parts[0] = str(class_id)
                 corrected_lines.append(' '.join(parts))
     
     with open(filepath, 'w') as f:
         f.write('\n'.join(corrected_lines))
-Format Conversion (VOC → YOLO):
-pythondef voc_to_yolo(x1, y1, x2, y2, img_w=5000, img_h=4000):
-    """Converts bounding box from VOC to YOLO normalized format"""
-    xc = (x1 + x2) / 2 / img_w
-    yc = (y1 + y2) / 2 / img_h
-    w  = (x2 - x1) / img_w
-    h  = (y2 - y1) / img_h
-    return xc, yc, w, h
-2.3 Model Architecture
-YOLO11s Configuration:
+Model Architecture: YOLO11s
+mermaidgraph TB
+    subgraph Input["Input Layer"]
+        I[Image: 2048×2048×3]
+    end
+    
+    subgraph Backbone["Backbone: CSPDarknet"]
+        B1[Conv Layer 1]
+        B2[Conv Layer 2]
+        B3[Conv Layer 3]
+        B4[Conv Layer 4]
+    end
+    
+    subgraph Neck["Neck: PANet"]
+        N1[Feature Pyramid]
+        N2[Path Aggregation]
+    end
+    
+    subgraph Head["Detection Head"]
+        H1[Large Objects]
+        H2[Medium Objects]
+        H3[Small Objects]
+    end
+    
+    subgraph Output["Output"]
+        O[Bounding Boxes<br/>+ Class Probabilities<br/>+ Confidence Scores]
+    end
+    
+    I --> B1 --> B2 --> B3 --> B4
+    B4 --> N1 --> N2
+    N2 --> H1 & H2 & H3
+    H1 & H2 & H3 --> O
+    
+    style I fill:#e3f2fd
+    style B4 fill:#fff3e0
+    style N2 fill:#f3e5f5
+    style O fill:#e8f5e9
+Configuration:
 
-Input resolution: 2048×2048 pixels
-Backbone: CSPDarknet with speed optimizations
-Neck: PANet for multi-scale feature fusion
-Head: Anchor-based detector with 3 detection scales
+Input Resolution: 2048×2048 pixels
 Training: 30 epochs, batch size=4, SGD optimizer (lr=0.01, momentum=0.937)
 Hardware: Google Colab Pro, Tesla T4 GPU (16GB VRAM)
 Framework: Ultralytics YOLO v8.3.229
 
 
-3. Results
-3.1 Overall Performance
-MetricValuevs. HerdNet BaselinemAP@0.561.4%83.4%mAP@0.5:0.9529.8%—F1-Score59.2%80.4%Precision57.7%78.4%Recall60.8%82.6%Inference speed~2-3s/image3× faster
-3.2 Per-Species Performance
-SpeciesnmAP@0.5PrecisionRecallF1-ScoreBuffalo36983.1%85.7%64.8%73.8%Elephant10280.3%62.2%78.4%69.4%Kudu16176.6%58.5%88.2%70.3%Waterbuck3940.2%52.8%38.5%44.5%Warthog4328.9%30.4%34.9%32.5%
-Analysis: Large-bodied species (Buffalo, Elephant) achieve >80% mAP due to high visual contrast. Cryptic species (Warthog) exhibit low performance (28.9%) attributable to natural camouflage and low-posture morphology.
-3.3 Impact of Data Correction
-ConditionmAP@0.5StatusIncorrect labels (1-6)0.0%Non-functionalCorrected labels (0-5)61.4%FunctionalImprovement+61.4 pp—
-This result validates data quality as the primary determinant of model performance in specialized deep learning applications.
+📊 Performance Analysis
+Scenario-Based Evaluation
+mermaidgraph LR
+    A[Open Savanna] -->|100% Recall| B[23/23 Detected]
+    C[Multi-Species] -->|100% Recall| D[18/18 Detected]
+    E[Dense Vegetation] -->|77.8% Recall| F[7/9 Detected]
+    G[Cryptic Species] -->|33.3% Recall| H[4/12 Detected]
+    
+    style B fill:#26de81,color:#fff
+    style D fill:#26de81,color:#fff
+    style F fill:#fed330
+    style H fill:#ff4757,color:#fff
+<div align="center">
+🎯 ScenarioComplexityAnimalsDetectedRecallPrecisionAvg.ConfidenceOpen savanna (Buffalo)⭐23/23100%95.7%84.2%Multi-species waterhole⭐⭐18/18100%94.4%78.6%Dense vegetation⭐⭐⭐7/977.8%87.5%64.3%Dense herd (>50 animals)⭐⭐⭐⭐58/6786.6%89.2%71.2%Cryptic species (Warthog)⭐⭐⭐⭐4/1233.3%50.0%38.7%
+</div>
+Computational Efficiency
+mermaidgantt
+    title Inference Time Comparison (per image)
+    dateFormat X
+    axisFormat %Ls
+    
+    section HerdNet
+    HerdNet Processing    :0, 3000
+    
+    section GUACAMAYA
+    GUACAMAYA Processing  :0, 1000
+<div align="center">
+MetricGUACAMAYA<br/>(YOLO11s)HerdNet<br/>BaselineImprovement⚡ Inference Time (GPU)0.5-1 s1.5-3 s3× faster💾 VRAM Usage2-3 GB4-5 GB40% ↓⚙️ CPU Usage30-50%60-80%38% ↓💿 Model Size180 MB85 MB—
+</div>
+Batch Processing Case Study
+Scenario: Complete census of Ennedi Reserve North Sector
+<table align="center">
+<tr>
+<td align="center" width="50%">
+<b>📊 Processing Metrics</b><br/>
+45 images | 15 km²<br/>
+⏱️ 3 min 24 s total<br/>
+🚀 13.2 images/min<br/>
+✅ 487 animals detected
+</td>
+<td align="center" width="50%">
+<b>🦁 Species Distribution</b><br/>
+🐃 Buffalo: 198 (40.7%)<br/>
+🐘 Elephant: 134 (27.5%)<br/>
+🦌 Kudu: 89 (18.3%)<br/>
+🦌 Waterbuck: 42 (8.6%)<br/>
+🐗 Warthog: 24 (4.9%)
+</td>
+</tr>
+</table>
 
-4. System Architecture
-4.1 Infrastructure Overview
-┌─────────────────────────────────────────────────────────────┐
-│                    GUACAMAYA SYSTEM                         │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  ┌──────────────┐          ┌──────────────────┐            │
-│  │   Frontend   │  HTTP    │     Backend      │            │
-│  │  Streamlit   │ ◄──────► │   AWS EC2        │            │
-│  │   (PaaS)     │  REST    │   Docker:8000    │            │
-│  └──────────────┘          └──────────────────┘            │
-│         │                          │                        │
-│         │                          ▼                        │
-│         │                  ┌──────────────┐                │
-│         │                  │  YOLO11s     │                │
-│         │                  │  HerdNet     │                │
-│         │                  └──────────────┘                │
-│         │                          │                        │
-│         │                          ▼                        │
-│         │                  ┌──────────────┐                │
-│         └─────────────────►│   SQLite DB  │                │
-│                            └──────────────┘                │
-└─────────────────────────────────────────────────────────────┘
-4.2 Backend Specifications
-ComponentTechnologyInfrastructureAWS EC2 t3.large (2 vCPUs, 8GB RAM)ContainerizationDockerAPI FrameworkFlask REST APIPort8000DatabaseSQLite (predictions tracking)Model StorageGoogle Drive (team)Model FormatsYOLO11s (.pt, 180MB), HerdNet (.pt, 85MB)
-4.3 Frontend Specifications
-ComponentTechnologyPlatformStreamlit Cloud (PaaS)LanguagePython 3.10Main Filestreamlit_app.pyDeploymentOn-demand from GitHubVisualizationPlotly interactive chartsInterfaceWeb browser (cross-platform)
-4.4 Processing Workflow
-1. User uploads image(s) → Streamlit frontend
-2. HTTP POST request → Backend API (port 8000)
-3. Model loading → YOLO11s/HerdNet
-4. Inference execution → Bounding box detection
-5. Results logging → SQLite database
-6. Response generation → JSON + annotated images
-7. Visualization → Frontend rendering
-4.5 Configurable Parameters
-ParameterRangeDefaultEffectModelYOLO11s / HerdNetYOLO11sSpeed vs accuracy trade-offConfidence threshold0.1 - 0.90.25Detection sensitivityIoU threshold0.3 - 0.90.45Duplicate suppressionImage size640 / 1280 / 20482048Resolution vs speed
-
-5. Usage Instructions
-5.1 Access
+💻 Usage Guide
+🌐 Access
 Production URL: https://guacamaya-app.streamlit.app
-5.2 Workflow
-Step 1: Image Upload
+📸 Workflow
+mermaidstateDiagram-v2
+    [*] --> Upload: Access Application
+    Upload --> Configure: Image(s) Uploaded
+    Configure --> Execute: Parameters Set
+    Execute --> Visualize: Processing Complete
+    Visualize --> Export: Review Results
+    Export --> [*]: Download Results
+    
+    Upload: 📤 Upload Images<br/>(.jpg, .png, .zip)
+    Configure: ⚙️ Configure<br/>Model & Parameters
+    Execute: 🔍 Execute Analysis<br/>(2-5s per image)
+    Visualize: 📊 Visualize Results<br/>Charts + Tables
+    Export: 💾 Export<br/>Images, CSV, PDF
+Step-by-Step Instructions
+<details>
+<summary><b>Step 1: Image Upload</b> (Click to expand)</summary>
 
 Single image: .jpg, .png (max 50MB)
 Batch processing: .zip file (max 100 images)
 Recommended format: 5000×4000 pixels (20MP)
 
-Step 2: Parameter Configuration
-
-Select model: YOLO11s (recommended) or HerdNet
-Set confidence threshold: 0.25 (default)
-Set IoU threshold: 0.45 (default)
-Choose image size: 2048px (default)
-
-Step 3: Execute Analysis
+</details>
+<details>
+<summary><b>Step 2: Parameter Configuration</b></summary>
+ParameterOptionsDefaultDescriptionModelYOLO11s / HerdNetYOLO11sSpeed vs accuracy trade-offConfidence0.1 - 0.90.25Detection sensitivityIoU Threshold0.3 - 0.90.45Duplicate suppressionImage Size640 / 1280 / 20482048Resolution vs speed
+</details>
+<details>
+<summary><b>Step 3: Execute Analysis</b></summary>
 
 System generates unique task ID (e.g., task_20250615_143022)
 Processing time: 2-5 seconds per image (GPU)
+Real-time progress bar displayed
 
-Step 4: Results Visualization
+</details>
+<details>
+<summary><b>Step 4: Results Visualization</b></summary>
+Output includes:
 
-Executive summary (detections, species, processing time)
-Species distribution (bar chart + pie chart)
-Annotated images with color-coded bounding boxes
-Detailed detection table (species, confidence, coordinates)
+📊 Executive summary (detections, species, processing time)
+📈 Species distribution (bar chart + pie chart)
+🖼️ Annotated images with color-coded bounding boxes
+📋 Detailed detection table (species, confidence, coordinates)
 
-Step 5: Export Results
+</details>
+<details>
+<summary><b>Step 5: Export Results</b></summary>
+Available formats:
 
-Download annotated images (.jpg)
-Download detection table (.csv)
-Download executive report (.pdf)
-Download complete bundle (.zip)
+📥 Annotated images (.jpg)
+📥 Detection table (.csv)
+📥 Executive report (.pdf)
+📥 Complete bundle (.zip)
 
+</details>
 
-6. Technical Specifications
-6.1 Dependencies
-Core Framework:
-Python 3.8-3.11 (recommended: 3.10.x)
-torch==2.0.1
-torchvision==0.15.2
-ultralytics==8.3.229
-Web Framework:
-streamlit==1.28.0
-flask==3.0.0
-flask-cors==4.0.0
-Computer Vision:
-opencv-python==4.8.1.78
-Pillow==10.1.0
-Data Processing:
-numpy==1.24.3
-pandas==2.1.0
-Visualization:
-matplotlib==3.7.2
-plotly==5.17.0
-seaborn==0.12.2
-Installation:
-bashpip install -r requirements.txt
-6.2 Hardware Requirements
-ComponentMinimumRecommendedCPUIntel i5 / AMD Ryzen 5Intel i7 / AMD Ryzen 7RAM8GB16GBGPUNone (CPU mode)NVIDIA GPU (4GB+ VRAM)Storage2GB10GBNetwork10 Mbps100 Mbps
-6.3 Performance Metrics
-HardwareInference TimeThroughputCPU (Intel i7)3-5 s12-20 images/minGPU (Tesla T4)0.5-1 s60-120 images/minCold start10-15 s—
-
-7. Deployment Guide
-7.1 Local Development
+🚀 Deployment
+Local Development
 bash# Clone repository
 git clone https://github.com/MackieUni/Grupo12-ProyectoFinal.git
 cd Grupo12-ProyectoFinal
@@ -227,17 +400,13 @@ pip install -r requirements.txt
 # Download models
 python scripts/download_models.py
 
-# Configure environment
-cp config/.env.example config/.env
-nano config/.env  # Edit configuration
-
-# Launch backend
+# Launch backend (Terminal 1)
 python app/backend/api_server.py
 
-# Launch frontend (separate terminal)
+# Launch frontend (Terminal 2)
 streamlit run app/streamlit_app.py
-7.2 AWS EC2 Production Deployment
-bash# Connect to EC2 instance
+AWS EC2 Production
+bash# Connect to EC2
 ssh -i ~/.ssh/guacamaya-key.pem ubuntu@<EC2_PUBLIC_IP>
 
 # Install Docker
@@ -245,129 +414,127 @@ sudo apt update && sudo apt install -y docker.io docker-compose git
 sudo systemctl start docker
 sudo usermod -aG docker ubuntu
 
-# Clone repository
+# Clone and configure
 git clone https://github.com/MackieUni/Grupo12-ProyectoFinal.git
 cd Grupo12-ProyectoFinal
-
-# Configure environment
 cp config/.env.example config/.env
-nano config/.env
 
-# Build Docker image
+# Build and run
 docker build -t guacamaya-backend:latest -f docker/Dockerfile .
-
-# Run container
-docker run -d \
-  --name guacamaya-backend \
-  -p 8000:8000 \
+docker run -d --name guacamaya-backend -p 8000:8000 \
   -v $(pwd)/modelos:/app/modelos \
-  -v $(pwd)/backend/database:/app/backend/database \
   --env-file config/.env \
   --restart always \
   guacamaya-backend:latest
 
-# Verify deployment
+# Verify
 curl http://localhost:8000/health
-7.3 Streamlit Cloud Frontend
 
-Navigate to streamlit.io/cloud
-Click "New app"
-Connect GitHub repository: MackieUni/Grupo12-ProyectoFinal
-Set main file: app/streamlit_app.py
-Configure secrets: API_BASE_URL = "http://<EC2_PUBLIC_IP>:8000"
-Deploy application
+🔧 Technical Specifications
+Dependencies
+<div align="center">
+CategoryKey LibrariesVersion🧠 Deep LearningPyTorch, Ultralytics YOLO2.0.1, 8.3.229🌐 Web FrameworkStreamlit, Flask1.28.0, 3.0.0🖼️ Computer VisionOpenCV, Pillow4.8.1, 10.1.0📊 Data ProcessingNumPy, Pandas1.24.3, 2.1.0📈 VisualizationPlotly, Matplotlib5.17.0, 3.7.2
+</div>
+Installation:
+bashpip install -r requirements.txt
+Hardware Requirements
+<div align="center">
+ComponentMinimumRecommendedNotesCPUIntel i5Intel i7—RAM8GB16GBRequired for batch processingGPUNoneNVIDIA (4GB+ VRAM)5-10× speedupStorage2GB10GBModels + datasetsNetwork10 Mbps100 MbpsFor cloud deployment
+</div>
 
+🎯 Limitations and Future Work
+Current Limitations
+mermaidmindmap
+  root((Limitations))
+    Species Coverage
+      Warthog: 28.9% mAP
+      Cryptic species challenging
+    Resolution
+      Training: 2048px
+      Native: 5000px gap
+    Occlusion
+      >50% reduces detection
+      20-25% recall drop
+    Training
+      Only 30 epochs
+      Time constrained
+    Data Imbalance
+      Waterbuck: 39 samples
+      Insufficient for learning
+Proposed Improvements
+<table>
+<tr>
+<td width="33%" valign="top">
+🔬 Technical
 
-8. Performance Benchmarks
-8.1 Scenario-Based Evaluation
-ScenarioComplexityn (actual)n (detected)RecallPrecisionAvg. ConfidenceOpen savanna (Buffalo)⭐2323100%95.7%84.2%Multi-species waterhole⭐⭐1818100%94.4%78.6%Dense vegetation⭐⭐⭐9777.8%87.5%64.3%Dense herd (>50 animals)⭐⭐⭐⭐675886.6%89.2%71.2%Cryptic species (Warthog)⭐⭐⭐⭐12433.3%50.0%38.7%
-8.2 Computational Efficiency
-MetricGUACAMAYA (YOLO11s)HerdNet BaselineImprovementInference time (GPU)0.5-1 s1.5-3 s3× fasterModel size180 MB85 MB—VRAM usage2-3 GB4-5 GB40% reductionCPU usage30-50%60-80%38% reduction
-8.3 Batch Processing Case Study
-Scenario: Complete census of Ennedi Reserve North Sector (45 images, 15 km²)
-MetricValueTotal processing time3 min 24 sAverage per image4.5 sThroughput13.2 images/minTotal detections487 animalsSpecies identified5Average confidence76.4%
-Species Distribution:
+Advanced data balancing
+Adaptive patching
+Extended training (50-100 epochs)
+Attention mechanisms
 
-Buffalo: 198 (40.7%)
-Elephant: 134 (27.5%)
-Kudu: 89 (18.3%)
-Waterbuck: 42 (8.6%)
-Warthog: 24 (4.9%)
+</td>
+<td width="33%" valign="top">
+⚡ Deployment
 
+Model quantization (INT8)
+Mobile deployment (ONNX)
+Multi-GPU processing
+Cloud auto-scaling
 
-9. Limitations and Future Work
-9.1 Current Limitations
-CategoryLimitationImpactSpecies CoverageWarthog: 28.9% mAPLow detection rate for cryptic speciesResolutionTraining: 2048px vs Native: 5000pxPossible small animal misdetectionOcclusion>50% occlusion reduces detection20-25% recall reductionTraining30 epochs (time-constrained)Potential for further optimizationMinority ClassesWaterbuck: only 39 test samplesInsufficient data for robust learning
-9.2 Proposed Future Work
-Technical Improvements:
+</td>
+<td width="33%" valign="top">
+🧪 Validation
 
-Advanced data balancing for minority species (augmentation, GANs)
-Adaptive patching for native resolution (5000×4000) processing
-Extended training (50-100 epochs) with learning rate scheduling
-Attention mechanisms for cryptic species detection
+Field trials
+Inter-annotator studies
+Longitudinal tracking
+Cross-ecosystem testing
 
-Deployment Enhancements:
+</td>
+</tr>
+</table>
 
-Real-time inference with model quantization (INT8)
-Mobile deployment (ONNX/TensorFlow Lite)
-Multi-GPU distributed processing
-Cloud auto-scaling for batch workloads
+📚 References
+Scientific Publications
+[1] Delplanque, A., et al. (2022). Multispecies detection and identification of African mammals in aerial imagery using convolutional neural networks. Remote Sensing in Ecology and Conservation, 8(2), 166–179.
+[2] Delplanque, A., et al. (2023). From crowd to herd counting: How to precisely detect and count African mammals using aerial imagery and deep learning? ISPRS Journal of Photogrammetry and Remote Sensing, 197, 167-180.
+[3] Kellenberger, B., et al. (2018). Detecting mammals in UAV images: Best practices to address a substantially imbalanced dataset with deep learning. Remote Sensing of Environment, 216, 139–153.
+[4] Redmon, J., et al. (2016). You Only Look Once: Unified, Real-Time Object Detection. IEEE CVPR, 779-788.
+[5] Jocher, G., et al. (2023). Ultralytics YOLO. GitHub repository. https://github.com/ultralytics/ultralytics
 
-Scientific Validation:
+🙏 Acknowledgments
+<table>
+<tr>
+<td width="33%" align="center">
+<b>🏢 Technical Support</b><br/>
+Microsoft AI for Good Lab<br/>
+Centro SINFONÍA, Uniandes<br/>
+AWS Educate
+</td>
+<td width="33%" align="center">
+<b>🌿 Conservation Expertise</b><br/>
+Instituto Sinchi<br/>
+Instituto Alexander<br/>von Humboldt
+</td>
+<td width="33%" align="center">
+<b>💻 Open Source</b><br/>
+Ultralytics Team<br/>
+PyTorch Community<br/>
+Streamlit Team
+</td>
+</tr>
+</table>
 
-Field trials in African national parks
-Inter-annotator agreement studies
-Longitudinal population tracking
-Cross-ecosystem generalization testing
-
-
-10. References
-10.1 Scientific Publications
-[1] Delplanque, A., Foucher, S., Lejeune, P., Linchant, J., Théau, J. (2022). Multispecies detection and identification of African mammals in aerial imagery using convolutional neural networks. Remote Sensing in Ecology and Conservation, 8(2), 166–179. DOI: 10.1002/rse2.234
-[2] Delplanque, A., Foucher, S., Théau, J., Bussière, E., Vermeulen, C., Lejeune, P. (2023). From crowd to herd counting: How to precisely detect and count African mammals using aerial imagery and deep learning? ISPRS Journal of Photogrammetry and Remote Sensing, 197, 167-180.
-[3] Kellenberger, B., Marcos, D., Tuia, D. (2018). Detecting mammals in UAV images: Best practices to address a substantially imbalanced dataset with deep learning. Remote Sensing of Environment, 216, 139–153.
-[4] Kellenberger, B., Marcos, D., Lobry, S., Tuia, D. (2019). Half a Percent of Labels is Enough: Efficient Animal Detection in UAV Imagery Using Deep CNNs and Active Learning. IEEE Transactions on Geoscience and Remote Sensing, 57(12), 9524–9533.
-[5] Redmon, J., Divvala, S., Girshick, R., Farhadi, A. (2016). You Only Look Once: Unified, Real-Time Object Detection. IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 779-788.
-[6] Jocher, G., Chaurasia, A., Jing, Q. (2023). Ultralytics YOLO. GitHub repository. https://github.com/ultralytics/ultralytics
-10.2 Dataset
-Delplanque, A., et al. (2022). HerdNet African Wildlife Dataset. Available: https://doi.org/10.1002/rse2.234
-10.3 Code and Resources
-GitHub Repository: https://github.com/MackieUni/Grupo12-ProyectoFinal
-Live Application: https://guacamaya-app.streamlit.app
-Documentation: See docs/ directory in repository
-
-Acknowledgments
-This work was conducted as part of the Master in Artificial Intelligence (MAIA) program at Universidad de los Andes. We acknowledge the following institutions for their support:
-Technical Support:
-
-Microsoft AI for Good Lab (computational resources)
-Centro SINFONÍA, Universidad de los Andes (academic infrastructure)
-AWS Educate (cloud infrastructure credits)
-
-Conservation Expertise:
-
-Instituto Sinchi (biodiversity monitoring expertise)
-Instituto Alexander von Humboldt (Colombian biodiversity applications)
-
-Open Source Community:
-
-Ultralytics Team (YOLO framework)
-PyTorch Community (deep learning framework)
-Streamlit Team (web application framework)
-
-
-Contact
-Corresponding Author:
-Inmaculada Concepción Rondón
+📞 Contact
+<div align="center">
+Corresponding Author: Inmaculada Concepción Rondón
 📧 mackierondon1@gmail.com
-Project Repository:
-🔗 https://github.com/MackieUni/Grupo12-ProyectoFinal
-Issues & Feature Requests:
-🐛 GitHub Issues
-Live Demo:
-🌐 https://guacamaya-app.streamlit.app
+Show Image
+Show Image
+Show Image
+</div>
 
-Citation
+📝 Citation
 If you use this work in your research, please cite:
 bibtex@mastersthesis{rondon2025guacamaya,
   title={GUACAMAYA: Automated Detection and Counting System for African Wildlife},
@@ -382,7 +549,7 @@ bibtex@mastersthesis{rondon2025guacamaya,
         with 3$\times$ computational efficiency improvement}
 }
 
-License
+📄 License
 MIT License
 
 Copyright (c) 2025 Grupo 12 - Universidad de los Andes
@@ -411,10 +578,11 @@ SOFTWARE.
 ⭐ Star this repository if you find it useful ⭐
 Show Image
 
-Built with dedication by Grupo 12
+🦅 Built with dedication by Grupo 12
 Master in Artificial Intelligence (MAIA)
 Universidad de los Andes, Bogotá, Colombia
 2025
 
 "Data quality is more determinant than algorithmic sophistication in deep learning applications for conservation."
+
 </div>
