@@ -9,7 +9,7 @@ env/
 venv/
 
 # Data & models
-data/
+#data/
 *.csv
 *.pt
 *.h5
