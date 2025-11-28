@@ -1,0 +1,12 @@
+names:
+- species_A
+- species_B
+- species_E
+- species_K
+- species_WH
+- species_WB
+nc: 6
+path: /content/drive/MyDrive/MAIA_Final_Project_2025/yolo_dataset_herdnet
+test: test/images
+train: train/images
+val: val/images
