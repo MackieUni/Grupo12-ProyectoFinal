@@ -3,7 +3,7 @@
 **Optimización de Arquitecturas de Deep Learning para Detección y Conteo Automático de Fauna en Surveys Aéreos de Alta Resolución**
 
 **Proyecto Final - Maestría en Inteligencia Artificial (MAIA)**  
-**Universidad de los Andes | 2024**
+**Universidad de los Andes | 2025**
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red.svg)](https://pytorch.org/)
@@ -1930,7 +1930,7 @@ SOFTWARE.
 
 **🎓 Maestría en Inteligencia Artificial (MAIA)**  
 **🏛️ Universidad de los Andes, Bogotá, Colombia**  
-**📅 2024**
+**📅 2025**
 
 ---
 
