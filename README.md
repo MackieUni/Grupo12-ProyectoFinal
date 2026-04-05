@@ -2,6 +2,18 @@
 
 **Data Quality Over Model Complexity: YOLO11-Based Wildlife Detection Achieving 80% Baseline Performance with 60% Fewer Parameters**
 
+## Defense & Intelligence Applications
+
+The computer vision techniques developed in GUACAMAYA: 
+ultra-high resolution aerial imagery analysis, 
+multi-class object detection at scale, edge-optimized 
+inference with 62% parameter reduction, and automated 
+population counting — translate directly to 
+Intelligence, Surveillance, and Reconnaissance (ISR) 
+applications in defense environments. This work 
+demonstrates production-grade computer vision 
+engineering under real-world constraints.
+
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![PyTorch 2.0+](https://img.shields.io/badge/PyTorch-2.0%2B-red.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
